@@ -1,21 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import Skeleton from "react-loading-skeleton";
 
-const PhotoCard = ({urls}) => {
+const PhotoItemSkeleton = () => {
 
     return (
         <Container>
-            <img src={urls.regular} alt=""/>
+            <Thumb/>
         </Container>
     )
 }
 
 const Container = styled.div`
-  img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
+    
 `;
 
-export default PhotoCard;
+const Thumb = styled(Skeleton)`
+    width: 100%;
+    height: 300px;
+`;
+
+export default PhotoItemSkeleton;

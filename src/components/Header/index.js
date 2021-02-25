@@ -26,7 +26,6 @@ const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
-  border-bottom:1px solid #bbb;
 `;
 
 const Logo = styled.div`
@@ -51,5 +50,7 @@ const NavItem = styled.div`
       color:#333;
     }
 `;
+
+
 
 export default Header;

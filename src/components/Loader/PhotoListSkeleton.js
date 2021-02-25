@@ -1,33 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
-import PhotoCard from "./PhotoCard";
+import _ from 'lodash';
+
+import PhotoItemSkeleton from "./PhotoItemSkeleton";
 import {ContentContainer} from "../Layout/Layout.Styled";
 
-const PhotoList = ({data, resultTitle}) => {
+const PhotoListSkeleton = () => {
+
+    const numbers = _.range(30)
 
     return (
         <Container>
             <ContentContainer>
-                <h1>{resultTitle}</h1>
                 <Row>
                     {
-                        data.map((item, index) => (
-                            <Col key={index}>
-                                <PhotoCard {...item}/>
+                        numbers.map((num) => (
+                            <Col>
+                                <PhotoItemSkeleton/>
                             </Col>
                         ))
                     }
                 </Row>
             </ContentContainer>
+
         </Container>
     )
 }
 
 const Container = styled.div`
-h1 {
-  font-size: 46px;
-  text-transform: capitalize;
-}
+
 `;
 
 const Row = styled.div`
@@ -37,8 +38,9 @@ const Row = styled.div`
 `;
 
 const Col = styled.div`
-    width: 33.333%;
+  width: 33.333%;
   padding: 12px;
 `;
 
-export default PhotoList;
+
+export default PhotoListSkeleton;

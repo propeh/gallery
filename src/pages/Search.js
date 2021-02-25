@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import SearchPhotosContainer from "../containers/SearchPhotosContainer";
 
-const Search = () => {
+const Search = (props) => {
 
     return (
         <Container>
-            Search
+            <SearchPhotosContainer {...props}/>
         </Container>
     )
 }

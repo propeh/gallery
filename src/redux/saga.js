@@ -13,6 +13,18 @@ const saga = function* () {
             console.log(e)
         }
     })
+
+    yield takeLatest(Action.Types.SEARCH_PHOTOS, function* (action) {
+        try {
+            const result = yield call(Api.searchPhotos, action.data)
+            if(result.data) {
+                yield put(Action.Creators.setSearchResult(result.data))
+            }
+        } catch (e) {
+            console.log(e)
+        }
+
+    })
 }
 
 export default saga;
