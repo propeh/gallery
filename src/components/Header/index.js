@@ -1,14 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
+import SearchBox from "../SearchBox";
+import {IconLogo} from "../../icons";
 
 const Header = () => {
 
     return (
         <Container>
             <Logo>
-                <Link to={'/'}>logo</Link>
+                <Link to={'/'}>
+                    <IconLogo/>
+                </Link>
             </Logo>
+            <SearchBox shape={"round"}/>
             <Nav>
                 <NavItem>
                     <Link to={'/'}>home</Link>
@@ -23,12 +28,12 @@ const Header = () => {
 
 const Container = styled.header`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 20px;
 `;
 
 const Logo = styled.div`
+  margin-right: 20px;
   a {
     text-transform:uppercase;
     color:#333;

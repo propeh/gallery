@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import styled from 'styled-components';
-import {HiOutlineSearch} from "react-icons/hi";
+import cn from 'classnames';
+import {IconSearch} from "../../icons";
+import {ContentContainer} from "../Layout/Layout.Styled";
 
-const SearchBox = () => {
+const SearchBox = ({shape}) => {
 
     const [value, setValue] = useState('')
     const history = useHistory();
@@ -18,26 +20,25 @@ const SearchBox = () => {
     }
 
     return (
-        <Container>
-            <Form onSubmit={onSubmit}>
-                <Label>
-                    <Button>
-                        <HiOutlineSearch/>
-                    </Button>
-                    <Input type="text"
-                           onChange={onChange}
-                           value={value}
-                           placeholder={"search..."}
-                    />
-                </Label>
-            </Form>
+        <Container className={cn("SearchBox", shape)}>
+                <Form onSubmit={onSubmit}>
+                    <Label>
+                        <Button>
+                            <IconSearch/>
+                        </Button>
+                        <Input type="text"
+                               onChange={onChange}
+                               value={value}
+                               placeholder={"search..."}
+                        />
+                    </Label>
+                </Form>
         </Container>
     )
 }
 
 const Container = styled.div`
-  max-width: 800px;
-  margin: 30px auto;
+  flex: 1;
 `;
 
 const Form = styled.form`
@@ -46,18 +47,26 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
-    height: 50px;
-  width: 800px;
   display: flex;
   flex: 1;
   position: relative;
-  border-radius: 4px;
-  background:#fff;
+
+  .round & {
+    height: 38px;
+    border-radius: 19px;
+    background: #eee;
+  }
+
+  .square & {
+    height: 54px;
+    border-radius: 4px;
+    background: #fff;
+  }
 `;
 
 const Button = styled.button`
-background:none;
-  position:absolute;
+  background: none;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -66,18 +75,30 @@ background:none;
   align-items: center;
   padding-left: 10px;
   font-size: 24px;
-  color:#767676;
+  color: #767676;
+
+  .round & {
+    svg {
+      width: 20px;
+    }
+  }
+
+  .square & {
+    svg {
+      width: 24px;
+    }
+  }
 `;
 
 const Input = styled.input`
-    width: 100%;
+  width: 100%;
   height: 100%;
   display: block;
   padding-left: 40px;
   font-size: 16px;
   border: 0;
-  background:none;
-  color:#767676;
+  background: none;
+  color: #767676;
 `;
 
 export default SearchBox;

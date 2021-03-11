@@ -1,44 +1,73 @@
 import React from 'react';
 import styled from 'styled-components';
 import PhotoCard from "./PhotoCard";
-import {ContentContainer} from "../Layout/Layout.Styled";
+import PhotoListSkeleton from "../Loader/PhotoListSkeleton";
 
-const PhotoList = ({data, resultTitle}) => {
+const PhotoList = ({data = []}) => {
+
+    const setGroups = (data) => {
+        const groups = [[], [], []];
+        const groupsHeight = [0, 0, 0];
+
+        for(let i=0; i<data.length; i++) {
+            const width = data[i].width;
+            const height = data[i].height;
+            const ratioHeight = height / width;
+
+            const minGroupsHeight = Math.min(...groupsHeight);
+            const minHeightIndex = groupsHeight.indexOf(minGroupsHeight);
+
+            groups[minHeightIndex].push(data[i]);
+            groupsHeight[minHeightIndex] = groupsHeight[minHeightIndex] + ratioHeight;
+        }
+
+        return groups;
+    }
+
+    const groups = setGroups(data);
+
+    if(data.length === 0) return <PhotoListSkeleton/>
 
     return (
         <Container>
-            <ContentContainer>
-                <h1>{resultTitle}</h1>
-                <Row>
-                    {
-                        data.map((item, index) => (
-                            <Col key={index}>
-                                <PhotoCard {...item}/>
-                            </Col>
-                        ))
-                    }
-                </Row>
-            </ContentContainer>
+            <Groups>
+                {
+                    groups.map((group, groupIndex) => (
+                        <Group key={groupIndex}>
+                            {
+                                group.map((item, i) => (
+                                    <Col key={i}>
+                                        <PhotoCard {...item}/>
+                                    </Col>
+                                ))
+                            }
+                        </Group>
+                    ))
+                }
+            </Groups>
         </Container>
     )
 }
 
 const Container = styled.div`
-h1 {
-  font-size: 46px;
-  text-transform: capitalize;
-}
+
 `;
 
-const Row = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -12px;
+const Groups = styled.div`
+  display:flex;
+  margin-left: -12px;
+  margin-right: -12px;
+  
 `;
 
-const Col = styled.div`
-    width: 33.333%;
+const Group = styled.div`
+  width: 33.3333%;
   padding: 12px;
 `;
 
+const Col = styled.div`
+  padding: 12px 0;
+`;
+
 export default PhotoList;
+

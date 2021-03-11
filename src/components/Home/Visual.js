@@ -14,7 +14,7 @@ const Visual = () => {
                     The internet’s source of freely-usable images. <br/>
                     Powered by creators everywhere.
                 </p>
-                <SearchBox/>
+                <SearchBox shape={"square"}/>
             </Contents>
         </Container>
     )
@@ -30,6 +30,8 @@ const Container = styled.div`
 `;
 
 const Contents = styled.div`
+  max-width: 864px;
+  width: 100%;
   h1 {
     font-size: 54px;
     font-weight: bold;

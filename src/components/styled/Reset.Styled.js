@@ -4,13 +4,20 @@ export const GlobalStyle = createGlobalStyle`
   * {
     padding: 0;
     margin: 0;
-    list-style:none;
+    list-style: none;
     box-sizing: border-box;
-    text-decoration:none;
+    text-decoration: none;
+
     &:focus {
       outline: none;
     }
+
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none 
+    }
   }
+
   img {
     max-width: 100%;
     vertical-align: top;

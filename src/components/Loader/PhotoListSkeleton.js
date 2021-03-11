@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import _ from 'lodash';
 
 import PhotoItemSkeleton from "./PhotoItemSkeleton";
-import {ContentContainer} from "../Layout/Layout.Styled";
 
 const PhotoListSkeleton = () => {
 
@@ -11,18 +10,15 @@ const PhotoListSkeleton = () => {
 
     return (
         <Container>
-            <ContentContainer>
                 <Row>
                     {
-                        numbers.map((num) => (
-                            <Col>
+                        numbers.map((num, i) => (
+                            <Col key={i}>
                                 <PhotoItemSkeleton/>
                             </Col>
                         ))
                     }
                 </Row>
-            </ContentContainer>
-
         </Container>
     )
 }
